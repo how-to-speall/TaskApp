@@ -21,28 +21,26 @@ addButtonEl.addEventListener("click", function() {
     push(itemsInDB, inputValue)
 
     
-    renderItems(inputValue)
+    // renderItems(inputValue)
     
     
 })
+
 
 onValue(itemsInDB, function(snapshot) {
-    
-    items = Object.values(snapshot.val())
+    const data = snapshot.val();
+    if (data) {
+        const items = Object.values(data);
+        ShoppingListEl.innerHTML = "";
 
-    ShoppingListEl.innerHTML = ""
-
-    for (let i = 0; i < items.length; i++) {
-        renderItems(items[i])
-       
-    }
-    
-
-    
-})
+        for (let i = 0; i < items.length; i++) {
+            renderItems(items[i]);
+        }
+    } 
+});
 
 
 function renderItems(itemValue) {
-    //inputFieldEl.value = ""
+    inputFieldEl.value = ""
     ShoppingListEl.innerHTML += `<li>${itemValue}</li>`
 }
