@@ -1,6 +1,6 @@
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
-import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
 const appSettings = {
     databaseURL: "https://taskapp-test-b9af6-default-rtdb.firebaseio.com/"
@@ -15,7 +15,6 @@ const inputFieldEl = document.getElementById("input-field")
 const addButtonEl = document.getElementById("add-button")
 
 
-
 addButtonEl.addEventListener("click", function() {
     let inputValue = inputFieldEl.value
 
@@ -27,7 +26,23 @@ addButtonEl.addEventListener("click", function() {
     
 })
 
+onValue(itemsInDB, function(snapshot) {
+    
+    items = Object.values(snapshot.val())
+
+    ShoppingListEl.innerHTML = ""
+
+    for (let i = 0; i < items.length; i++) {
+        renderItems(items[i])
+       
+    }
+    
+
+    
+})
+
+
 function renderItems(itemValue) {
-    inputFieldEl.value = ""
+    //inputFieldEl.value = ""
     ShoppingListEl.innerHTML += `<li>${itemValue}</li>`
 }
