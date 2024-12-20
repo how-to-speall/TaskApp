@@ -15,6 +15,13 @@ const inputFieldEl = document.getElementById("input-field")
 const addButtonEl = document.getElementById("add-button")
 
 
+
+if (!localStorage.getItem("authenticated")){
+    window.location.href = "auth.html";
+}
+
+
+
 addButtonEl.addEventListener("click", function() {
     let inputValue = inputFieldEl.value
 
