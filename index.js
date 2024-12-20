@@ -18,6 +18,8 @@ const addButtonEl = document.getElementById("add-button")
 
 if (!localStorage.getItem("authenticated")){
     window.location.href = "auth.html";
+}else{
+    localStorage.removeItem("authenticated");
 }
 
 
